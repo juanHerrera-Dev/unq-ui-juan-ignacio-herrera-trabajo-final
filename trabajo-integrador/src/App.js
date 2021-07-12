@@ -17,7 +17,7 @@ function App() {
             <Switch>
               <Route path="/home" component={Partida}/>
               <Route path="/" component={Inicio}/>
-              </Switch>
+            </Switch>
           
       </Router>
   );

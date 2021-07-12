@@ -1,6 +1,6 @@
 import logoG from './generalaLogo.png';
 import './Inicio.css';
-import { useHistory , Link } from 'react-router-dom';
+import { useHistory  } from 'react-router-dom';
 
 export function Inicio(props) {
 

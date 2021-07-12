@@ -1,0 +1,45 @@
+.tablero {
+    /* The image used */
+    background-image: url(./fondoMesa.jpg);
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.PartidaBackground {
+    background-color: #f51212f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.PartidaStyle {
+    background-color: #070707;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgba(255, 255, 255, 0.658);
+}
+
+.Recuadro-logo{
+    float: left;
+    color: black;
+    padding: 0px;
+    text-decoration: none;
+    line-height: 25px;
+    border-radius: 4px;
+    
+}
+.Header-logo{
+    width: 70%;
+    height: 80%;
+}
+
