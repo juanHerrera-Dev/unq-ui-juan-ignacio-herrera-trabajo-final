@@ -1,0 +1,57 @@
+.Tablero-parte2{
+    height: 300px;
+    display:grid;
+    justify-content: center;
+    align-content: end;
+}
+.Tablero-parte1{
+    height: 300px;
+    display:grid;
+    justify-content: center;
+    
+}
+.caja{
+    position:relative
+
+}
+#dados {
+    height: 100px;
+    width: 70%;
+    position: absolute;
+    z-index: 1;
+    top: 30%;
+    float: none;
+    text-align: center;
+}
+#dados .dados-js {
+    left: 50%;
+    position: absolute;
+    margin-left: -125px;
+}
+.dado {
+    background: url(./dado.png) no-repeat;
+    height: 49px;
+    width: 42px;
+}
+#dados .dado {
+    float: left;
+}
+.dado.dado_numero_6 {
+    background-position: -86px -50px;
+}
+.dado.dado_numero_5 {
+    background-position: -44px -50px;
+}
+.dado.dado_numero_2 {
+    background-position: -44px 0;
+}
+.dado.dado_numero_4 {
+    background-position: 0 -50px;
+}
+.dado.dado_numero_3 {
+    background-position: -86px 0;
+}
+.dado.dado_numero_1 {
+    background-position: 0 0;
+}
+
