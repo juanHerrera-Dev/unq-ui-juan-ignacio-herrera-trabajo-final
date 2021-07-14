@@ -29,17 +29,3 @@
     color: rgba(255, 255, 255, 0.658);
 }
 
-.Recuadro-logo{
-    float: left;
-    color: black;
-    padding: 0px;
-    text-decoration: none;
-    line-height: 25px;
-    border-radius: 4px;
-    
-}
-.Header-logo{
-    width: 70%;
-    height: 80%;
-}
-

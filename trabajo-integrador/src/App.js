@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { Inicio } from './components/Inicio';
 import { Partida } from './components/Partida';
+import { GeneralaProvider } from './context/Partida/GeneralaContext';
 
 
 function App() {
@@ -13,12 +14,12 @@ function App() {
   return (
       
       <Router>
-          
+          <GeneralaProvider>
             <Switch>
               <Route path="/home" component={Partida}/>
               <Route path="/" component={Inicio}/>
             </Switch>
-          
+          </GeneralaProvider>
       </Router>
   );
 }
