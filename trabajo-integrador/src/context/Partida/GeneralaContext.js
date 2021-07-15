@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 
 
 
@@ -45,35 +45,37 @@ const GeneralaProvider = ({children}) => {
     
     const[partidaState, setPartidaState] = useState(initialPartidaState);
     
+    //queries
+    const getRondas = () => {return(partidaState.rondas)}
 
-    console.log(partidaState);
-
-        //queries
-        const getRondas = () => {return(partidaState.rondas)}
-
-        const getRondaActual =  () =>{return (partidaState.rondaActual)}
+    const getRondaActual =  () =>{return (partidaState.rondaActual)}
 
         
-        //actions 
-        const tirarDados = () =>{
-            let partidaStateNuevo = {
-                rondas: [],
-                rondaActual:{
-                    ronda:{
-                        numeroTirada: partidaState.rondaActual.ronda.numeroTirada + 1,
-                        tiradaActual:[rndInt(),rndInt(),rndInt(),rndInt(),rndInt()],
-                        valorJugadaGuarda: 0
-                    }
+    //actions 
+    const tirarDados = () =>{
+        if(hayDadosATirar()){
+            let rondaActualModificada = {...partidaState.rondaActual}
+            let numeroDeTiradaModificado = 
+                rondaActualModificada.ronda.numeroTirada + 1
+
+            let rondaModificada= {
+                ...rondaActualModificada.ronda,
+                numeroTirada:numeroDeTiradaModificado,
+                tiradaActual: nuevaTirada()
                 }
-            }
+            rondaActualModificada = {ronda: rondaModificada}
+            let partidaStateNuevo = {...partidaState, rondaActual: rondaActualModificada}
             console.log(partidaState.rondaActual.ronda.numeroTirada + 1);
             setPartidaState(partidaStateNuevo);
         }
-        const seleccionarDado = indice =>{
+        else{}
+        //console.log(partidaState);
+    }
+    const seleccionarDado = indice =>{
             
-            const nuevosDados = [...partidaState.dadosSeleccionados]
-            nuevosDados[indice] = !partidaState.dadosSeleccionados[indice]
-            setPartidaState({...partidaState,dadosSeleccionados:nuevosDados});
+        const nuevosDados = [...partidaState.dadosSeleccionados]
+        nuevosDados[indice] = !partidaState.dadosSeleccionados[indice]
+        setPartidaState({...partidaState,dadosSeleccionados:nuevosDados});
         }
 
     const queries= {
@@ -85,7 +87,19 @@ const GeneralaProvider = ({children}) => {
         tirarDados,
         seleccionarDado   
     }
-    
+    //funciones auxiliares
+    const nuevaTirada = () =>{
+        let tiradaActual =partidaState.rondaActual.ronda.tiradaActual
+        let tiradaADevolver= tiradaActual.map((dado, indice) => (
+            partidaState.dadosSeleccionados[indice]? rndInt() : dado  
+            ));
+        console.log(tiradaADevolver);
+        return tiradaADevolver; 
+    }
+    const hayDadosATirar = () =>{
+        
+        return (partidaState.dadosSeleccionados.includes(true));
+    }
 
     return(
         <GeneralaContext.Provider value={{
@@ -99,15 +113,7 @@ const GeneralaProvider = ({children}) => {
 
 }
 
-
+//funciones auxiliares
 const rndInt = () => {return(Math.floor(Math.random() * 6) + 1)}
-/*
-const tiradaNueva = () => {
-    const dadosSeleccionados
-    let resultadoTirada = []
-
-
-    return resultadoTirada;
-}*/
 
 export {GeneralaProvider,GeneralaContext};
