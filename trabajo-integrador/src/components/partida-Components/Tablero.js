@@ -12,6 +12,7 @@ export function Tablero(props) {
         setDados(queries.getRondaActual().ronda.tiradaActual);
     },[queries])
     
+    const claseNoHabilitado = (state.rondaActual.ronda.numeroTirada == 3) ? "disabled" : "" 
     const handleClick = () => {
         
         actions.tirarDados();
@@ -34,7 +35,8 @@ export function Tablero(props) {
                         </div>
                         <div className="Tablero-parte2">
                             <span className="align-bottom">
-                                <button type="button" className="btn btn-danger btn-lg" onClick={handleClick}>Tirar Dados</button>
+                                <button type="button" className={`btn btn-danger btn-lg ${claseNoHabilitado}`} onClick={handleClick}>Tirar Dados</button>
+                               
                             </span>
                         </div>
                     </div>

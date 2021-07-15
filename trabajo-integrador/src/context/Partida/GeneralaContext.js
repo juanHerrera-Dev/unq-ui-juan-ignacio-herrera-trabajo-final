@@ -13,7 +13,8 @@ const GeneralaContext = createContext({
                 valorJugadaGuarda: 0
             }
         },
-        dadosSeleccionados:[]
+        dadosSeleccionados:[],
+        JugadasDisponibles:[]
     },
     queries:{
         getRondas : () =>{},
@@ -38,8 +39,8 @@ const GeneralaProvider = ({children}) => {
                 valorJugadaGuarda: 0
             }
         },
-        dadosSeleccionados: [true,true,true,true,true]
-
+        dadosSeleccionados: [true,true,true,true,true],
+        JugadasDisponibles:[true,true,true,true,true,true,true,true,true,true]
         
     }
     
