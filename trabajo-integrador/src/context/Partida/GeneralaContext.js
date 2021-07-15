@@ -25,7 +25,8 @@ const GeneralaContext = createContext({
     },
     actions:{
         tirarDados : () => {},
-        seleccionarDado: () =>{}
+        seleccionarDado: () =>{},
+        elegirJugada:(indice) =>{}
     }
 });
 
@@ -59,8 +60,9 @@ const GeneralaProvider = ({children}) => {
             return 0;
         }
         else{
+            
             let rondaDeJugada =partidaState.rondas.find(ronda => (ronda.JugadaElegida == indice))
-                return rondaDeJugada.valorJugadaGuarda;
+                return rondaDeJugada.valorJugadaGuardada;
         }
     }
 
@@ -79,7 +81,7 @@ const GeneralaProvider = ({children}) => {
                 }
             rondaActualModificada = {ronda: rondaModificada}
             let partidaStateNuevo = {...partidaState, rondaActual: rondaActualModificada}
-            console.log(partidaState.rondaActual.ronda.numeroTirada + 1);
+            
             setPartidaState(partidaStateNuevo);
         }
         else{}
@@ -93,6 +95,33 @@ const GeneralaProvider = ({children}) => {
         }
         else{}
     }
+    const elegirJugada= indice => {
+        let valorJugadaAGuardar = calcularValorJugada(indice);
+        let rondaModificada = {...partidaState.rondaActual.ronda,valorJugadaGuardada:valorJugadaAGuardar,JugadaElegida:indice}
+        
+        let siguienteRondaActual =  {
+                ronda:{
+                    numeroTirada: 0,
+                    tiradaActual: [1,2,3,4,5],
+                    valorJugadaGuardada: 0,
+                    JugadaElegida: 12
+                }
+        }
+        let dadosSeleccionadosDeRondaSiguiente= [true,true,true,true,true]
+        let rondasMasRondaActual = [...partidaState.rondas,rondaModificada]
+        let proximasJugadasDisponibles = [...partidaState.JugadasDisponibles]
+        proximasJugadasDisponibles[indice] = !partidaState.JugadasDisponibles[indice];
+        console.log(indice);
+        console.log(proximasJugadasDisponibles);
+        setPartidaState({
+                        rondas: rondasMasRondaActual,
+                        rondaActual: siguienteRondaActual,
+                        dadosSeleccionados: dadosSeleccionadosDeRondaSiguiente,
+                        JugadasDisponibles: proximasJugadasDisponibles
+                    });
+        debugger
+        console.log(partidaState);
+    }
 
     const queries= {
         getRondas,
@@ -101,7 +130,8 @@ const GeneralaProvider = ({children}) => {
     }
     const actions = {
         tirarDados,
-        seleccionarDado   
+        seleccionarDado,
+        elegirJugada  
     }
     //funciones auxiliares
     const nuevaTirada = () =>{
@@ -109,12 +139,41 @@ const GeneralaProvider = ({children}) => {
         let tiradaADevolver= tiradaActual.map((dado, indice) => (
             partidaState.dadosSeleccionados[indice]? rndInt() : dado  
             ));
-        console.log(tiradaADevolver);
+        
         return tiradaADevolver; 
     }
     const hayDadosATirar = () =>{
         
         return (partidaState.dadosSeleccionados.includes(true));
+    }
+
+    const calcularValorJugada= indice =>{
+        let valorDeJugada = 0;
+
+        switch(indice) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5: 
+
+                (partidaState.rondaActual.ronda.tiradaActual.forEach((dado) => {
+                    if(dado==(indice + 1)){
+                         valorDeJugada= valorDeJugada + indice + 1 
+                    }
+                    else{}
+                }))
+
+            break;
+
+            default:  
+                valorDeJugada = 0;
+
+        }
+        console.log(valorDeJugada);
+        console.log(partidaState);
+        return valorDeJugada
     }
 
     return(

@@ -7,7 +7,7 @@ export function TablaTiradas(props) {
 
     const { state,actions,queries } = useContext(GeneralaContext);
     
-    const [jugadas,setJugadas] = useState(state.JugadasDisponibles);
+    console.log(state);
     
     return(
         <aside className=" col-sm-4 col-md-4 col-lg-4 text-justify">
@@ -15,9 +15,9 @@ export function TablaTiradas(props) {
                     <li className="list-group-item d-flex justify-content-between 1h-sm">
                         <div>Jugadas</div>
                     </li>
-                    {jugadas.map((jugada, indice) => (
+                    {state.JugadasDisponibles.map((jugada, indice) => (
                         <Jugada estaHabilitada={jugada} indice={indice} key={indice}/>
-                    ))}
+                    )) }
                     <li className="list-group-item d-flex justify-content-between 1h-sm">
                         <div>Resultado</div>
                         <span>120</span>

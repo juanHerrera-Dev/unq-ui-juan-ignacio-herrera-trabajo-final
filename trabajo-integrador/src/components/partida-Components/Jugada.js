@@ -10,7 +10,7 @@ export function Jugada({estaHabilitada, indice}) {
     const {state,queries,actions} = useContext(GeneralaContext);
     
     //funciones Auxiliares
-
+    console.log(estaHabilitada)
     const nombreJugada = () => {
         let nombreMatcheado= ""
         switch(indice) {
@@ -59,6 +59,7 @@ export function Jugada({estaHabilitada, indice}) {
                             <div>{nombreJugada(indice)}</div>
                         </div>
                         <div className="col-3">
+                        {console.log(state)}
                             <span>{queries.getValorDeJugada(indice)}</span>
                         </div>
                         <div className="col-4">
@@ -69,7 +70,7 @@ export function Jugada({estaHabilitada, indice}) {
                                         (estaHabilitada && (state.rondaActual.ronda.numeroTirada!=0))? 
                                         "" : "disabled"}`
                                     }
-                                onClick={actions.elegirJugada}
+                                onClick={() => actions.elegirJugada(indice)}
                                 >Guardar
                             </button>
                         </div>
