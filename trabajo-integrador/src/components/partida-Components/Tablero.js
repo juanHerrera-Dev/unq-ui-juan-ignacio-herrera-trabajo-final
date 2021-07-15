@@ -25,8 +25,8 @@ export function Tablero(props) {
                             <div className="caja">
                                 <div id="dados">
                                     <div className="dados-js">
-                                        {dados.map(e => (
-                                            <Dado numero={e}/>
+                                        {dados.map((e, indice) => (
+                                            <Dado numero={e} indice={indice}/>
                                         ))}
                                     </div>
                                 </div>

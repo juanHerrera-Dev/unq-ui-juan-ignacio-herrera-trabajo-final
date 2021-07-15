@@ -55,3 +55,7 @@
     background-position: 0 0;
 }
 
+.seleccionado {
+    border: 1px solid greenyellow;
+}
+

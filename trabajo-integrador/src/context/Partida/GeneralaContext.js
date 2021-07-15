@@ -12,14 +12,17 @@ const GeneralaContext = createContext({
                 tiradaActual: [1,2,3,4,5],
                 valorJugadaGuarda: 0
             }
-        }
+        },
+        dadosSeleccionados:[]
     },
     queries:{
         getRondas : () =>{},
-        getRondaActual :  () =>{}
+        getRondaActual :  () =>{},
+        
     },
     actions:{
-        tirarDados : () => {}
+        tirarDados : () => {},
+        seleccionarDado: () =>{}
     }
 });
 
@@ -34,13 +37,13 @@ const GeneralaProvider = ({children}) => {
                 tiradaActual: [1,2,3,4,5],
                 valorJugadaGuarda: 0
             }
-        }
+        },
+        dadosSeleccionados: [true,true,true,true,true]
+
         
     }
     
     const[partidaState, setPartidaState] = useState(initialPartidaState);
-    
-    //const [partidaRondaActual,setRondaActual]= useState(partidaState.rondaActual);
     
 
     console.log(partidaState);
@@ -49,6 +52,8 @@ const GeneralaProvider = ({children}) => {
         const getRondas = () => {return(partidaState.rondas)}
 
         const getRondaActual =  () =>{return (partidaState.rondaActual)}
+
+        
         //actions 
         const tirarDados = () =>{
             let partidaStateNuevo = {
@@ -64,12 +69,21 @@ const GeneralaProvider = ({children}) => {
             console.log(partidaState.rondaActual.ronda.numeroTirada + 1);
             setPartidaState(partidaStateNuevo);
         }
+        const seleccionarDado = indice =>{
+            
+            const nuevosDados = [...partidaState.dadosSeleccionados]
+            nuevosDados[indice] = !partidaState.dadosSeleccionados[indice]
+            setPartidaState({...partidaState,dadosSeleccionados:nuevosDados});
+        }
+
     const queries= {
         getRondas,
         getRondaActual,
+        
     }
     const actions = {
-        tirarDados    
+        tirarDados,
+        seleccionarDado   
     }
     
 
@@ -87,5 +101,13 @@ const GeneralaProvider = ({children}) => {
 
 
 const rndInt = () => {return(Math.floor(Math.random() * 6) + 1)}
+/*
+const tiradaNueva = () => {
+    const dadosSeleccionados
+    let resultadoTirada = []
+
+
+    return resultadoTirada;
+}*/
 
 export {GeneralaProvider,GeneralaContext};
