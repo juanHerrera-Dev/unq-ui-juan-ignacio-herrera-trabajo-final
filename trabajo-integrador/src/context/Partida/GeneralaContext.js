@@ -21,7 +21,7 @@ const GeneralaContext = createContext({
         getRondas : () =>{},
         getRondaActual :  () =>{},
         getValorDeJugada: (indice) => {},
-        
+        getResultado: () => {}
     },
     actions:{
         tirarDados : () => {},
@@ -64,6 +64,20 @@ const GeneralaProvider = ({children}) => {
             let rondaDeJugada =partidaState.rondas.find(ronda => (ronda.JugadaElegida == indice))
                 return rondaDeJugada.valorJugadaGuardada;
         }
+    }
+    const getResultado = () => {
+        let resultadoActual = 0
+        
+        if(partidaState.rondas.length!=0){
+            partidaState.rondas.forEach((ronda) => {
+                resultadoActual = resultadoActual + ronda.valorJugadaGuardada
+            });
+        return resultadoActual;
+        }
+        else{
+            return resultadoActual;
+        }
+
     }
 
         
@@ -119,19 +133,19 @@ const GeneralaProvider = ({children}) => {
                         dadosSeleccionados: dadosSeleccionadosDeRondaSiguiente,
                         JugadasDisponibles: proximasJugadasDisponibles
                     });
-        debugger
         console.log(partidaState);
     }
 
     const queries= {
         getRondas,
         getRondaActual,
-        getValorDeJugada
+        getValorDeJugada,
+        getResultado
     }
     const actions = {
         tirarDados,
         seleccionarDado,
-        elegirJugada  
+        elegirJugada
     }
     //funciones auxiliares
     const nuevaTirada = () =>{

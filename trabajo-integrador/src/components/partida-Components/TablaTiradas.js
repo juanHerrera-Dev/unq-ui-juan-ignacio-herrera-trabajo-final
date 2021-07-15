@@ -20,7 +20,7 @@ export function TablaTiradas(props) {
                     )) }
                     <li className="list-group-item d-flex justify-content-between 1h-sm">
                         <div>Resultado</div>
-                        <span>120</span>
+                        <span>{queries.getResultado()}</span>
                     </li>
                 </ul>
         </aside>
