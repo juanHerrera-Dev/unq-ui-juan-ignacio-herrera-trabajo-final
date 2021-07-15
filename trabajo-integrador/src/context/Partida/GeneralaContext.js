@@ -174,13 +174,61 @@ const GeneralaProvider = ({children}) => {
 
                 (partidaState.rondaActual.ronda.tiradaActual.forEach((dado) => {
                     if(dado==(indice + 1)){
-                         valorDeJugada= valorDeJugada + indice + 1 
+                         valorDeJugada = valorDeJugada + indice + 1 
                     }
                     else{}
                 }))
 
             break;
+            case 6:
+                let tiradaEscalera =partidaState.rondaActual.ronda.tiradaActual.sort().toString();
 
+                if(tiradaEscalera === "1,2,3,4,5" || tiradaEscalera === "2,3,4,5,6"){
+                    valorDeJugada = 20;
+                }
+                else {}
+            break;    
+            case 7:
+                let tiradaFull=partidaState.rondaActual.ronda.tiradaActual.sort();
+                
+                const d1 = tiradaFull[0];
+                const d2 = tiradaFull[1];
+                const d3 = tiradaFull[2];
+                const d4 = tiradaFull[3];
+                const d5 = tiradaFull[4];
+                    //ej 222 33
+                if(d1 === d2 && d2 === d3 && d3 != d4 && d4 === d5){
+                    valorDeJugada=30;
+                }
+                //ej 22 333
+                else if(d1 === d2 && d2 != d3 && d3 === d4 && d4 === d5){
+                    valorDeJugada=30;
+                }
+                else {}
+                break;
+            case 8:
+                let tiradaPoker=partidaState.rondaActual.ronda.tiradaActual.sort();
+                
+                const dado1 = tiradaPoker[0];
+                const dado2 = tiradaPoker[1];
+                const dado3 = tiradaPoker[2];
+                const dado4 = tiradaPoker[3];
+                const dado5 = tiradaPoker[4];
+
+                if(dado1 === dado2 && dado2 === dado3 && dado3 === dado4){
+                    valorDeJugada=40;
+                }
+                else if(dado2 === dado3 && dado3 === dado4 && dado4 === dado5){
+                    valorDeJugada=40;
+                }
+                else {}
+            break; 
+            case 9:
+                let tiradaGenerala=partidaState.rondaActual.ronda.tiradaActual
+                let dadoAComparar= tiradaGenerala[0]
+                
+                tiradaGenerala.every(dado => (dado==dadoAComparar))? valorDeJugada=60 : valorDeJugada= 0
+                break;
             default:  
                 valorDeJugada = 0;
 

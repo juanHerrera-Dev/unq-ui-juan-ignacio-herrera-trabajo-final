@@ -7,8 +7,6 @@ export function TablaTiradas(props) {
 
     const { state,actions,queries } = useContext(GeneralaContext);
     
-    console.log(state);
-    
     return(
         <aside className=" col-sm-4 col-md-4 col-lg-4 text-justify">
                 <ul className="list-group mb-3">

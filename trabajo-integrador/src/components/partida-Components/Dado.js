@@ -7,13 +7,8 @@ export function Dado({numero, indice}) {
 
     const {state,queries,actions} = useContext(GeneralaContext);
 
-    //console.log("dado de indice:", indice," con valor:", state.dadosSeleccionados[indice]);
     const claseDeSeleccion = state.dadosSeleccionados[indice] ? "seleccionado" : "no_seleccionado"
-    //console.log(state);
     
-    
-    //estaSeleccionado(indice)
-
     return(
         <div 
              className={`dado dado_numero_${numero} ${claseDeSeleccion}`}  
