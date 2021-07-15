@@ -8,12 +8,7 @@ import { GeneralaContext } from '../../context/Partida/GeneralaContext';
 export function Jugada({estaHabilitada, indice}) {
 
     const {state,queries,actions} = useContext(GeneralaContext);
-    /*
-    console.log("dado de indice:", indice," con valor:", state.dadosSeleccionados[indice]);
-    const claseDeSeleccion = state.dadosSeleccionados[indice] ? "seleccionado" : "no_seleccionado"
-    */
     
-    //estaSeleccionado(indice)
     //funciones Auxiliares
 
     const nombreJugada = () => {
@@ -54,13 +49,32 @@ export function Jugada({estaHabilitada, indice}) {
                 nombreMatcheado="no deberia pasar";      
         }
         return nombreMatcheado
-    } 
+    }
 
     return(
         <li className="list-group-item d-flex justify-content-between 1h-sm">
-            <div>{nombreJugada(indice)}</div>
-            <span>3</span>
-            <button type="button" className={`btn btn-success ${estaHabilitada? "" : "disabled"}`} >Guardar</button>
+            <div className="container">
+                    <div className="row">
+                        <div className="col-5">
+                            <div>{nombreJugada(indice)}</div>
+                        </div>
+                        <div className="col-3">
+                            <span>{queries.getValorDeJugada(indice)}</span>
+                        </div>
+                        <div className="col-4">
+                            <button 
+                                type="button" 
+                                className={
+                                    `btn btn-success ${
+                                        (estaHabilitada && (state.rondaActual.ronda.numeroTirada!=0))? 
+                                        "" : "disabled"}`
+                                    }
+                                onClick={actions.elegirJugada}
+                                >Guardar
+                            </button>
+                        </div>
+                    </div>
+            </div>
         </li>
         
     );

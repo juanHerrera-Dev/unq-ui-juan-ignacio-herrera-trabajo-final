@@ -19,7 +19,7 @@ export function Tablero(props) {
         
     }
     return(
-        <article className="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+        <article className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                     <div className="tablero" >
                         <div className="Tablero-parte1">
                             <h3>Generala : Jugador 1</h3>

@@ -10,7 +10,7 @@ export function TablaTiradas(props) {
     const [jugadas,setJugadas] = useState(state.JugadasDisponibles);
     
     return(
-        <aside className=" col-sm-4 col-md-3 col-lg-3 text-justify">
+        <aside className=" col-sm-4 col-md-4 col-lg-4 text-justify">
                 <ul className="list-group mb-3">
                     <li className="list-group-item d-flex justify-content-between 1h-sm">
                         <div>Jugadas</div>

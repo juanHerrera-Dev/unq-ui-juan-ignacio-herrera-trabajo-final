@@ -10,7 +10,8 @@ const GeneralaContext = createContext({
             ronda:{
                 numeroTirada: 0,
                 tiradaActual: [1,2,3,4,5],
-                valorJugadaGuarda: 0
+                valorJugadaGuardada: 0,
+                JugadaElegida: 12 //elegi el 12 porque solo van del 0 al 9 las jugadas validas.
             }
         },
         dadosSeleccionados:[],
@@ -19,6 +20,7 @@ const GeneralaContext = createContext({
     queries:{
         getRondas : () =>{},
         getRondaActual :  () =>{},
+        getValorDeJugada: (indice) => {},
         
     },
     actions:{
@@ -36,7 +38,8 @@ const GeneralaProvider = ({children}) => {
             ronda:{
                 numeroTirada: 0,
                 tiradaActual: [1,2,3,4,5],
-                valorJugadaGuarda: 0
+                valorJugadaGuardada: 0,
+                JugadaElegida: 12
             }
         },
         dadosSeleccionados: [true,true,true,true,true],
@@ -50,6 +53,16 @@ const GeneralaProvider = ({children}) => {
     const getRondas = () => {return(partidaState.rondas)}
 
     const getRondaActual =  () =>{return (partidaState.rondaActual)}
+
+    const getValorDeJugada = (indice) => {
+        if(partidaState.JugadasDisponibles[indice]){
+            return 0;
+        }
+        else{
+            let rondaDeJugada =partidaState.rondas.find(ronda => (ronda.JugadaElegida == indice))
+                return rondaDeJugada.valorJugadaGuarda;
+        }
+    }
 
         
     //actions 
@@ -73,16 +86,18 @@ const GeneralaProvider = ({children}) => {
         //console.log(partidaState);
     }
     const seleccionarDado = indice =>{
-            
-        const nuevosDados = [...partidaState.dadosSeleccionados]
-        nuevosDados[indice] = !partidaState.dadosSeleccionados[indice]
-        setPartidaState({...partidaState,dadosSeleccionados:nuevosDados});
+        if(partidaState.rondaActual.ronda.numeroTirada != 0){ 
+            const nuevosDados = [...partidaState.dadosSeleccionados]
+            nuevosDados[indice] = !partidaState.dadosSeleccionados[indice]
+            setPartidaState({...partidaState,dadosSeleccionados:nuevosDados});
         }
+        else{}
+    }
 
     const queries= {
         getRondas,
         getRondaActual,
-        
+        getValorDeJugada
     }
     const actions = {
         tirarDados,

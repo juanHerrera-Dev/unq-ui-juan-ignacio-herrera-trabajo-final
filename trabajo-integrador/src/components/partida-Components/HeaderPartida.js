@@ -12,7 +12,7 @@ export function HeaderPartida(props) {
                     </div>
                   </div>
                   <div className="col-sm-8" >
-                    <h1>Jugador 1</h1>
+                    <h1>Generala UNQ</h1>
                   </div>
                 </div>
         </header>
