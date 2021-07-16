@@ -21,7 +21,8 @@ const GeneralaContext = createContext({
         getRondas : () =>{},
         getRondaActual :  () =>{},
         getValorDeJugada: (indice) => {},
-        getResultado: () => {}
+        getResultado: () => {},
+        getTiradaActual: () => {}
     },
     actions:{
         tirarDados : () => {},
@@ -79,6 +80,10 @@ const GeneralaProvider = ({children}) => {
             return resultadoActual;
         }
 
+    }
+    const getTiradaActual = () =>{
+
+        return partidaState.rondaActual.ronda.tiradaActual;
     }
 
         
@@ -143,7 +148,8 @@ const GeneralaProvider = ({children}) => {
         getRondas,
         getRondaActual,
         getValorDeJugada,
-        getResultado
+        getResultado,
+        getTiradaActual
     }
     const actions = {
         tirarDados,

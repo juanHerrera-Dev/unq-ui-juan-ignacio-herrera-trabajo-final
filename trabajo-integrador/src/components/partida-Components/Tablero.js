@@ -6,10 +6,10 @@ import { Dado } from './Dado';
 export function Tablero(props) {
 
     const { state,actions,queries } = useContext(GeneralaContext);
-    const [dados,setDados] = useState(state.rondaActual.ronda.tiradaActual);
+    const [dados,setDados] = useState(queries.getTiradaActual());
     
     useEffect(() => {
-        setDados(queries.getRondaActual().ronda.tiradaActual);
+        setDados(queries.getTiradaActual());
     },[queries])
     
     const claseNoHabilitado = (state.rondaActual.ronda.numeroTirada === 3) ? "disabled" : "" 
