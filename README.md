@@ -1,5 +1,5 @@
 # unq-ui-juan-ignacio-herrera-trabajo-final
-Prerequisitos: tener instalado NODEJS
+Prerrequisitos: tener instalado NODEJS
 
 Instrucciones de descarga,Instalacion y como correr el proyecto Generala.
 
