@@ -65,7 +65,7 @@ export function Jugada({estaHabilitada, indice}) {
                                 type="button" 
                                 className={
                                     `btn btn-success ${
-                                        (estaHabilitada && (state.rondaActual.ronda.numeroTirada!=0))? 
+                                        (estaHabilitada && (state.rondaActual.ronda.numeroTirada !== 0))? 
                                         "" : "disabled"}`
                                     }
                                 onClick={() => actions.elegirJugada(indice)}

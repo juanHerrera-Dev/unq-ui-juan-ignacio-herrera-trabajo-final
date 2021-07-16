@@ -1,11 +1,11 @@
 import './TablaTiradas.css';
-import { useContext, useEffect , useState } from 'react';
+import { useContext } from 'react';
 import { GeneralaContext } from '../../context/Partida/GeneralaContext';
 import { Jugada } from './Jugada';
 
 export function TablaTiradas(props) {
 
-    const { state,actions,queries } = useContext(GeneralaContext);
+    const { state,queries } = useContext(GeneralaContext);
     
     return(
         <aside className=" col-sm-4 col-md-4 col-lg-4 text-justify">

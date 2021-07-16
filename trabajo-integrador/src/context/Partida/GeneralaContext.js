@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useState } from 'react'
 
 
 
@@ -26,7 +26,8 @@ const GeneralaContext = createContext({
     actions:{
         tirarDados : () => {},
         seleccionarDado: () =>{},
-        elegirJugada:(indice) =>{}
+        elegirJugada:(indice) =>{},
+        reiniciarPartida:() =>{}
     }
 });
 
@@ -61,14 +62,14 @@ const GeneralaProvider = ({children}) => {
         }
         else{
             
-            let rondaDeJugada =partidaState.rondas.find(ronda => (ronda.JugadaElegida == indice))
+            let rondaDeJugada =partidaState.rondas.find(ronda => (ronda.JugadaElegida === indice))
                 return rondaDeJugada.valorJugadaGuardada;
         }
     }
     const getResultado = () => {
         let resultadoActual = 0
         
-        if(partidaState.rondas.length!=0){
+        if(partidaState.rondas.length !== 0){
             partidaState.rondas.forEach((ronda) => {
                 resultadoActual = resultadoActual + ronda.valorJugadaGuardada
             });
@@ -102,7 +103,7 @@ const GeneralaProvider = ({children}) => {
         //console.log(partidaState);
     }
     const seleccionarDado = indice =>{
-        if(partidaState.rondaActual.ronda.numeroTirada != 0){ 
+        if(partidaState.rondaActual.ronda.numeroTirada !== 0){ 
             const nuevosDados = [...partidaState.dadosSeleccionados]
             nuevosDados[indice] = !partidaState.dadosSeleccionados[indice]
             setPartidaState({...partidaState,dadosSeleccionados:nuevosDados});
@@ -125,15 +126,17 @@ const GeneralaProvider = ({children}) => {
         let rondasMasRondaActual = [...partidaState.rondas,rondaModificada]
         let proximasJugadasDisponibles = [...partidaState.JugadasDisponibles]
         proximasJugadasDisponibles[indice] = !partidaState.JugadasDisponibles[indice];
-        console.log(indice);
-        console.log(proximasJugadasDisponibles);
+        
         setPartidaState({
                         rondas: rondasMasRondaActual,
                         rondaActual: siguienteRondaActual,
                         dadosSeleccionados: dadosSeleccionadosDeRondaSiguiente,
                         JugadasDisponibles: proximasJugadasDisponibles
                     });
-        console.log(partidaState);
+        
+    }
+    const reiniciarPartida= () =>{
+        setPartidaState(initialPartidaState);
     }
 
     const queries= {
@@ -145,8 +148,10 @@ const GeneralaProvider = ({children}) => {
     const actions = {
         tirarDados,
         seleccionarDado,
-        elegirJugada
+        elegirJugada,
+        reiniciarPartida
     }
+    
     //funciones auxiliares
     const nuevaTirada = () =>{
         let tiradaActual =partidaState.rondaActual.ronda.tiradaActual
@@ -173,7 +178,7 @@ const GeneralaProvider = ({children}) => {
             case 5: 
 
                 (partidaState.rondaActual.ronda.tiradaActual.forEach((dado) => {
-                    if(dado==(indice + 1)){
+                    if(dado === (indice + 1)){
                          valorDeJugada = valorDeJugada + indice + 1 
                     }
                     else{}
@@ -197,11 +202,11 @@ const GeneralaProvider = ({children}) => {
                 const d4 = tiradaFull[3];
                 const d5 = tiradaFull[4];
                     //ej 222 33
-                if(d1 === d2 && d2 === d3 && d3 != d4 && d4 === d5){
+                if(d1 === d2 && d2 === d3 && d3 !== d4 && d4 === d5){
                     valorDeJugada=30;
                 }
                 //ej 22 333
-                else if(d1 === d2 && d2 != d3 && d3 === d4 && d4 === d5){
+                else if(d1 === d2 && d2 !== d3 && d3 === d4 && d4 === d5){
                     valorDeJugada=30;
                 }
                 else {}
@@ -227,14 +232,12 @@ const GeneralaProvider = ({children}) => {
                 let tiradaGenerala=partidaState.rondaActual.ronda.tiradaActual
                 let dadoAComparar= tiradaGenerala[0]
                 
-                tiradaGenerala.every(dado => (dado==dadoAComparar))? valorDeJugada=60 : valorDeJugada= 0
+                tiradaGenerala.every(dado => (dado === dadoAComparar))? valorDeJugada=60 : valorDeJugada= 0
                 break;
             default:  
                 valorDeJugada = 0;
 
         }
-        console.log(valorDeJugada);
-        console.log(partidaState);
         return valorDeJugada
     }
 

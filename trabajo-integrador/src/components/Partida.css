@@ -1,7 +1,7 @@
 .tablero {
     /* The image used */
+    /*background-image: url(./fondoMesa.jpg);*/
     background-image: url(./fondoMesa.jpg);
-
     /* Full height */
     height: 100%; 
 

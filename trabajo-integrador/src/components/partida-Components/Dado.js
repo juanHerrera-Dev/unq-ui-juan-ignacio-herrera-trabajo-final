@@ -5,7 +5,7 @@ import './Tablero.css';
 
 export function Dado({numero, indice}) {
 
-    const {state,queries,actions} = useContext(GeneralaContext);
+    const {state,actions} = useContext(GeneralaContext);
 
     const claseDeSeleccion = state.dadosSeleccionados[indice] ? "seleccionado" : "no_seleccionado"
     
