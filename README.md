@@ -23,4 +23,6 @@ Instrucciones de descarga,Instalacion y como correr el proyecto Generala.
   -por ultimo despues de hacer el npm install, y esperar a que se complete, escribir el comando 
   npm start que lanzara la aplicacion en el browser.
   
-*Ultimo paso: Jugar!
+*Ultimo paso: Jugar!  
+
+IMPORTANTE!!(aclaracion: tachar una jugada se hace al apretar guardar cuando no se posee una combinacion de dados que sume puntos a esa jugada)
