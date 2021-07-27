@@ -1,4 +1,6 @@
-# unq-ui-juan-ignacio-herrera-trabajo-final
+# Generala 
+unq-ui-juan-ignacio-herrera-trabajo-final
+
 Prerrequisitos: tener instalado NODEJS
 
 Instrucciones de descarga,Instalacion y como correr el proyecto Generala.
